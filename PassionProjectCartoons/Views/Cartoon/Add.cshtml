@@ -1,0 +1,71 @@
+﻿@model List<PassionProjectCartoons.Models.TvShow>
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add a New Cartoon</h2>
+<div>
+    <a href="/Cartoon/List">Back to List</a>
+</div>
+<form method="post" action="/Cartoon/Add">
+    <div>
+        <span>Name:</span>
+        <input id="CartoonName" type="text" name="CartoonName"/>
+    </div>
+    <div>
+        <span>Gender:</span>
+        <input id="male" type="radio" name="CartoonGender" value="male" />
+        <label for="male">Male</label>
+        <input id="female" type="radio" name="CartoonGender" value="female" />
+        <label for="female">Female</label>
+    </div>
+    <div>
+        <label for="CartoonType">Cartoon Type:</label>
+       
+            <select id="CartoonType" name="CartoonType">
+                <option value="xx" disabled>--Select--</option>
+
+                @{
+                    List<string> types = new List<string>();
+                    types.Add("Cat");
+                    types.Add("Mouse");
+                    types.Add("Dog");
+                    types.Add("Bird");
+                    types.Add("Bear");
+                    types.Add("Boy");
+                    types.Add("Girl");
+
+                }
+                @foreach (var type in types)
+                {
+                    <option value="@type">@type</option>
+                }
+            </select>
+       
+    </div>
+    <div>
+        <label for="Weight">Weight:</label>
+        <input id="Weight" type="number" name="weight"/>
+    </div>
+    <div>
+        <label for="Height">Height:</label>
+        <input id="Height" type="number" name="height"/>
+    </div>
+    <div>
+        <span>TvShow:</span>
+        <select id="TvShowID" type="text" name="TvShowID">
+            @{ 
+                //A rendering loop for showing list of tvshows
+                //A cartoon should be in a tvshow
+                foreach (var tvshows in Model)
+                { 
+                    <option value="@tvshows.TvShowID">@tvshows.TvShowName</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Cartoon" />
+    </div>
+</form>
+

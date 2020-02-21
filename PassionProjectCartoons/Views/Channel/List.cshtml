@@ -1,0 +1,27 @@
+﻿@model List<PassionProjectCartoons.Models.Channel>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Channels</h2>
+<div>
+    <a href="/Channel/Add">Add Channel</a>
+</div>
+<div>
+    @{ 
+        foreach (var Channel in Model)
+        {<div>
+            <div class="list_element">
+                <a href="/Channel/Show/@Channel.ChannelID">@Channel.ChannelName</a>
+            </div>
+            <div>
+                Country: <span>@Channel.Country</span>
+            </div>
+            <div>
+                <a href="/Channel/Update/@Channel.ChannelID">Update</a>
+            </div>
+          </div>
+        }
+    }
+</div>
+

@@ -1,0 +1,15 @@
+﻿@model PassionProjectCartoons.Models.Cartoon
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete @Model.CartoonName?</h2>
+<div>
+    <a href="/Cartoon/Show/@Model.CartoonID">Cancel</a>
+</div>
+<form method="post" action="/Cartoon/Delete/@Model.CartoonID">
+    <div>
+        <input type="submit" value="Confirm"/>
+    </div>
+</form>
+

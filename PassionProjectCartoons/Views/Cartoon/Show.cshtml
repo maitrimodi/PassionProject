@@ -1,0 +1,42 @@
+﻿@model PassionProjectCartoons.Models.ViewModels.ShowCartoon
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show Cartoon</h2>
+<div>
+    <a href="/Cartoon/List">Back to List</a>
+    <a href="/Cartoon/Update/@Model.cartoon.CartoonID">Update</a>
+    <a href="/Cartoon/DeleteConfirm/@Model.cartoon.CartoonID">Delete</a>
+</div>
+<div>
+    <div>
+        <div>
+            @{ 
+                if(Model.cartoon.HasPic == 1)
+                {
+                    <img src="../../Content/Cartoons/@(Model.cartoon.CartoonID).@(Model.cartoon.PicExtension)" alt="Image of @Model.cartoon.CartoonName"/>
+                }
+            }
+        </div>
+        <div>Name: @Model.cartoon.CartoonName</div>
+        <div>Gender: @Model.cartoon.CartoonGender</div>
+        <div>Type: @Model.cartoon.CartoonType</div>
+        <div>Weight: @Model.cartoon.Weight</div>
+        <div>Height: @Model.cartoon.Height</div>
+        <div>TvShow: @Model.cartoon.TvShows.TvShowName</div>
+        <div>
+            <div>TvShows:</div>
+            @{ 
+                foreach (var tvshow in Model.tvshows)
+                {
+                    <div>
+                        <a href="/TvShow/Show/@tvshow.TvShowID">@tvshow.TvShowName, @tvshow.Director</a>
+                    </div>
+                }
+            }
+            
+        </div>
+    </div>
+</div>
+

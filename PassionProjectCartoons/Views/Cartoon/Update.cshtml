@@ -1,0 +1,91 @@
+﻿@model PassionProjectCartoons.Models.ViewModels.UpdateCartoon
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+<div>
+    <a href="/Cartoon/List">Back to List</a>
+</div>
+<form action="/Cartoon/Update/@Model.Cartoon.CartoonID" method="post" enctype="multipart/form-data">
+    <div>
+        <span>Image:</span>
+        <input type="file" name="CartoonPic" id="CartoonPic"/>
+    </div>
+    <div>
+        <span>Cartoon Name:</span>
+        <input type="text" name="CartoonName" id="CartoonName" value="@Model.Cartoon.CartoonName" />
+    </div>
+    <div>
+        <span>Gender:</span>
+        @{
+            var male = "";
+            var female = "";
+            if(Model.Cartoon.CartoonGender == "male")
+            {
+                male = "checked";
+            }
+            else if(Model.Cartoon.CartoonGender == "female")
+            {
+                female = "checked";
+            }
+
+        }
+        <input id="male" type="radio" name="CartoonGender" value="male" @male />
+        <label for="male">Male</label>
+        <input id="female" type="radio" name="CartoonGender" value="female" @female />
+        <label for="female">Female</label>
+    </div>
+    <div>
+        <label for="CartoonType">Cartoon Type:</label>
+        <select id="CartoonType" name="CartoonType">
+            <option value="xx" disabled>--Select--</option>
+            
+            @{
+                List<string> types = new List<string>();
+                types.Add("Cat");
+                types.Add("Mouse");
+                types.Add("Dog");
+                types.Add("Bird");
+                types.Add("Bear");
+                types.Add("Boy");
+                types.Add("Girl");
+            }
+            @foreach (var type in types)
+            {
+                var selected = "";
+                if (Model.Cartoon.CartoonType == type)
+                {
+                    selected = "selected";
+                }
+                <option value="@type" @selected>@type</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="Weight">Weight:</label>
+        <input id="Weight" type="number" name="weight" value="@Model.Cartoon.Weight" />
+    </div>
+    <div>
+        <label for="Height">Height:</label>
+        <input id="Height" type="number" name="height" value="@Model.Cartoon.Height"/>
+    </div>
+    <div>
+        <span>Tv Shows:</span>
+        <select id="TvShowID" name="TvShowID">
+            @foreach (var tvshow in Model.TvShows)
+            {
+                var selected = "";
+                if (Model.Cartoon.TvShowID == tvshow.TvShowID)
+                {
+                    selected = "selected";
+                }
+                <option value="@tvshow.TvShowID" @selected>@tvshow.TvShowName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Pet"/>
+    </div>
+</form>
+

@@ -1,0 +1,42 @@
+﻿@model List<PassionProjectCartoons.Models.Cartoon>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Cartoons</h2>
+<div>
+    <a href="/Cartoon/Add">Add Cartoon</a>
+</div>
+<div>
+    @{ 
+        foreach(var Cartoon in Model)
+        {
+            <div class="display_flex">
+                <div >
+                    @{ 
+                        if(Cartoon.HasPic == 1)
+                        {
+                            <img src="../../Content/Cartoons/@(Cartoon.CartoonID).@(Cartoon.PicExtension)" alt="Image of @Cartoon.CartoonName" class="picture"/>
+                        }
+                    }   
+                </div>
+                <div class="cartoon_details">
+                    <div>
+                        <a href="/Cartoon/Show/@Cartoon.CartoonID">@Cartoon.CartoonName</a>
+                    </div>
+                    <div>
+                        Type : <span>@Cartoon.CartoonType</span>
+                    </div>
+                    <div>
+                        Tv Show: <span>@Cartoon.TvShows.TvShowName</span>
+                    </div>
+                    <div>
+                        <a href="/Cartoon/Update/@Cartoon.CartoonID">Update</a>
+                    </div>
+                </div>
+            </div>
+         
+        }
+    }
+</div>
+

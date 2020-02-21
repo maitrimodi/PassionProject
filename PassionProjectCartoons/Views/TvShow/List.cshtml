@@ -1,0 +1,26 @@
+﻿@model List<PassionProjectCartoons.Models.TvShow>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Tv Shows</h2>
+<div>
+    <a href="/TvShow/Add">Add Tv Show</a>
+</div>
+<div>
+    @{ 
+        foreach (var TvShow in Model)
+        { 
+            <div class="list_element">
+                <a href="/TvShow/Show/@TvShow.TvShowID">@TvShow.TvShowName</a>
+            </div>
+            <div>
+                Episodes: <span>@TvShow.Episodes</span>
+            </div>
+            <div>
+                <a href="/TvShow/Update/@TvShow.TvShowID">Update</a>
+            </div>
+        }
+    }
+</div>
+

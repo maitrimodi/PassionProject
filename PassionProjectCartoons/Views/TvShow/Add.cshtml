@@ -1,0 +1,63 @@
+﻿@model List<PassionProjectCartoons.Models.Channel>
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add Tv Show</h2>
+<div>
+    <a href="/TvShow/List">Back to List</a>
+</div>
+<form method="post" action="/TvShow/Add">
+    <div>
+        <span>Name:</span>
+        <input id="TvShowName" type="text" name="TvShowName"/>
+    </div>
+    <div>
+        <span>Director:</span>
+        <input id="Director" type="text" name="Director"/>
+    </div>
+    <div>
+        <span>Release Date:</span>
+        <input id="ReleaseDate" type="datetime" name="ReleaseDate"/>
+    </div>
+    <div>
+        <span>Episodes:</span>
+        <input id="Episodes" type="number" name="Episodes"/>
+    </div>
+    <div>
+        <label for="Genre">Genre:</label>
+        <select id="Genre" name="Genre">
+            <option value="xx" disabled>--Select--</option>
+            <option value="comedy">Comedy</option>
+            <option value="gameshow">Game Show</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="documentary">Documentary</option>
+            <option value="children">Children's Tevevision</option>
+            <option value="anime">Anime</option>
+        </select>
+    </div>
+    <div>
+        <span>Channel:</span>
+        <select id="ChannelID" type="text" name="ChannelID">
+            @{ 
+                foreach(var channels in Model)
+                {
+                    <option value="@channels.ChannelID">@channels.ChannelName</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <label for="Language">Language:</label>
+        <select id="Language" name="Language">
+            <option value="xx" disabled>--Select--</option>
+            <option value="english">English</option>
+            <option value="french">French</option>
+            <option value="hindi">Hindi</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Tv Show"/>
+    </div>
+</form>
+

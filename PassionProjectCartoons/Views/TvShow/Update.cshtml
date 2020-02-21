@@ -1,0 +1,78 @@
+﻿@model PassionProjectCartoons.Models.ViewModels.UpdateTvShow
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.TvShow.TvShowName</h2>
+<div>
+    <a href="/TvShow/List">Back to List</a>
+</div>
+<div>
+    <div>
+        <form method="post" action="/TvShow/Update/@Model.TvShow.TvShowID">
+            <div>
+                <span>Name:</span>
+                <input type="text" name="TvShowName" id="TvShowName" value="@Model.TvShow.TvShowName"/>
+            </div>
+            <div>
+                <span>Director:</span>
+                <input type="text" name="Director" id="Director" value="@Model.TvShow.Director"/>
+            </div>
+            <div>
+                <span>Release Date:</span>
+                <input type="datetime" name="ReleaseDate" id="ReleaseDate" value="@Model.TvShow.ReleaseDate"/>
+            </div>
+            <div>
+                <span>Episodes:</span>
+                <input type="number" name="Episodes" id="Episodes" value="@Model.TvShow.Episodes"/>
+            </div>
+            <div>
+                <span>Genre:</span>
+                <select id="Genre" name="Genre">
+                    <option value="xx" disabled>--Select--</option>
+                    @{ 
+                        List<string> genres = new List<string>();
+                        genres.Add("Comedy");
+                        genres.Add("Game Show");
+                        genres.Add("Fantasy");
+                        genres.Add("Documentary");
+                        genres.Add("Children's Tevevision");
+                        genres.Add("Anime");
+                    }
+                   @foreach (var genre in genres)
+                   {
+                       var selected = "";
+                       if(Model.TvShow.Genre == genre)
+                       {
+                           selected = "selected";
+                       }
+                       <option value="@genre" @selected>@genre</option>
+                   }
+                </select>
+                
+            </div>
+            <div>
+                <span>Channel:</span>
+                <select id="ChannelID" name="ChannelID">
+                     @foreach (var channels in Model.Channel)
+                     {
+                         var selected = "";
+                         if(Model.TvShow.ChannelID == channels.ChannelID)
+                         {
+                             selected = "selected";
+                         }
+                         <option value="@channels.ChannelID"@selected>@channels.ChannelName</option>
+                     }
+                    
+                </select>
+            </div>
+            <div>
+                <span>Language:</span>
+                <input type="text" name="Language" id="Language" value="@Model.TvShow.Language"/>
+            </div>
+            <div>
+                <input type="submit" value="Update Tv Show"/>
+            </div>
+        </form>
+    </div>
+</div>

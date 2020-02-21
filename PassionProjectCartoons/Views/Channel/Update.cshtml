@@ -1,0 +1,53 @@
+﻿@model PassionProjectCartoons.Models.Channel
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.ChannelName</h2>
+<div>
+    <a href="/Channel/List">Back to List</a>
+</div>
+<div>
+    <div>
+        <form method="post" action="/Channel/Update/@Model.ChannelID">
+            <div>
+                <span>Channel Name:</span>
+                <input type="text" name="ChannelName" id="ChannelName" value="@Model.ChannelName"/>
+            </div>
+            <div>
+                <span>Channel Description:</span>
+                <input type="text" name="ChannelDescription" id="ChannelDescription" value="@Model.ChannelDescription"/>
+            </div>
+            <div>
+                <span>Country:</span>
+                <select id="Country" name="Country">
+                    <option value="xx" disabled>--Select--</option>
+                    @{ 
+                        List<string> countries = new List<string>();
+                        countries.Add("Canada");
+                        countries.Add("USA");
+                        countries.Add("India");
+                        countries.Add("Japan");
+                    }
+                    @foreach (var country in countries)
+                    {
+                        var selected = "";
+                        if (Model.Country == country)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@country" @selected>@country</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <span>ChannelOwner:</span>
+                <input type="text" name="ChannelOwner" id="ChannelOwner" value="@Model.ChannelOwner"/>
+            </div>
+            <div>
+                <input type="submit" value="Update Channel"/>
+            </div>
+        </form>
+    </div>
+</div>
+

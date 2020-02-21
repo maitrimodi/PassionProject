@@ -1,0 +1,28 @@
+﻿@model PassionProjectCartoons.Models.Channel
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Details on @Model.ChannelName</h2>
+<div>
+    <a href="/Channel/List">Back to List</a>
+    <a href="/Channel/Update/@Model.ChannelID" class="update_channel">Update</a>
+    <a href="/Channel/DeleteConfirm/@Model.ChannelID">Delete</a>
+</div>
+<div>
+    <div>
+        <div>
+            Channel Name: @Model.ChannelName
+        </div>
+        <div>
+            Channel Description: @Model.ChannelDescription
+        </div>
+        <div>
+            Country: @Model.Country
+        </div>
+        <div>
+            Channel Owner: @Model.ChannelOwner
+        </div>
+    </div>
+</div>
+

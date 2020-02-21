@@ -1,0 +1,15 @@
+﻿@model PassionProjectCartoons.Models.TvShow
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete @Model.TvShowName?</h2>
+<div>
+    <a href="/TvShow/Show/@Model.TvShowID">Cancel</a>
+</div>
+<form method="post" action="/TvShow/Delete/@Model.TvShowID">
+    <div>
+        <input type="submit" value="Confirm"/>
+    </div>
+</form>
+

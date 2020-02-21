@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add Channel</h2>
+<div>
+    <a href="/Channel/List">Back to List</a>
+</div>
+<form method="post" action="/Channel/Add">
+    <div>
+        <span>Name:</span>
+        <input id="ChannelName" type="text" name="ChannelName"/>
+    </div>
+    <div>
+        <span>Description:</span>
+        <input id="ChannelDescription" type="text" name="ChannelDescription"/>
+    </div>
+    <div>
+        <label for="Country">Country:</label>
+        <select id="Country" name="Country">
+            <option value="xx" disabled>--Select--</option>
+            <option value="canada">Canada</option>
+            <option value="india">India</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+        </select>
+    </div>
+    <div>
+        <span>Owner:</span>
+        <input id="ChannelOwner" type="text" name="ChannelOwner"/>
+    </div>
+    <div>
+        <input type="submit" value="Add Channel"/>
+    </div>
+</form>
+

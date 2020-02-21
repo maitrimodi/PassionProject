@@ -1,0 +1,89 @@
+﻿@model PassionProjectCartoons.Models.ViewModels.ShowTvShow
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@Model.tvshow.TvShowName </h2>
+<div>
+    <a href="/TvShow/List">Back to List</a>
+    <a href="/TvShow/Update/@Model.tvshow.TvShowID" class="update_tvshow">Update</a>
+    <a href="/TvShow/DeleteConfirm/@Model.tvshow.TvShowID">Delete</a>
+</div>
+<div class="display_flex_tv">
+    <div class="tv_details">
+        <div>
+            <span>Name:</span>@Model.tvshow.TvShowName
+        </div>
+        <div>
+            <span>Director:</span>@Model.tvshow.Director
+        </div>
+        <div>
+            <span>Release Date:</span>@Model.tvshow.ReleaseDate
+        </div>
+        <div>
+            <span>Episodes:</span>@Model.tvshow.Episodes
+        </div>
+        <div>
+            <span>Genre:</span>@Model.tvshow.Genre
+        </div>
+        <div>
+            <span>Language:</span>@Model.tvshow.Language    
+        </div>
+    </div>
+    <div class="display_flex_tv">
+        <div class="tv_details">
+            <div>Channels:</div>
+            @{ 
+                foreach (var channel in Model.channel)
+                {
+                    <div>
+                        <a href="/Channel/Show/@channel.ChannelID">@channel.ChannelName,@channel.ChannelOwner</a>
+                    </div>
+
+                }
+            }
+        </div>
+        <div class="tv_details">
+            <div>Cartoons:</div>
+            @{ 
+                foreach(var cartoon in Model.cartoons)
+                {
+                    <div>
+                        <a href="/Cartoon/Show/@cartoon.CartoonID">@cartoon.CartoonName,@cartoon.CartoonType</a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="tv_details">
+            <div>List of Cartoons in @Model.tvshow.TvShowName</div>
+            @{ 
+                foreach(var cartoon in @Model.cartoons)
+                { 
+                    <div>
+                        <a href="/Cartoon/Show/@cartoon.CartoonID">@cartoon.CartoonName</a>
+                        @{ 
+
+                        }
+                        <a href="/TvShow/RemoveCartoon/@Model.tvshow.TvShowID?CartoonID=@cartoon.CartoonID">
+                            Remove Cartoon
+                        </a>
+                    </div>
+                }
+            }
+            <form method="post" action="/TvShow/AddCartoon/@Model.tvshow.TvShowID">
+            <select name="CartoonID" id="CartoonID">
+                    @{ 
+                        //List of cartoons to add to a tv show
+                        foreach(var cartoon in Model.all_cartoons)
+                        {
+                            <option value="@cartoon.CartoonID">
+                                @cartoon.CartoonName (@cartoon.CartoonType)
+                            </option>
+                        }
+                    }
+                </select>
+                <input type="submit" value="Add Cartoon"/>
+            </form>
+        </div>
+    </div>
+</div>
